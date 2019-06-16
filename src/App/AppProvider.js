@@ -17,7 +17,8 @@ export class AppProvider extends React.Component {
       addCoin: this.addCoin,
       removeCoin: this.removeCoin,
       isInfavorites: this.isInfavorites,
-      confirmFavorites: this.confirmFavorites
+      confirmFavorites: this.confirmFavorites,
+      setFilterCoins: this.setFilterCoins
     };
   }
 
@@ -68,6 +69,8 @@ export class AppProvider extends React.Component {
     let { favorites } = cryptoDashData;
     return { favorites };
   }
+
+  setFilterCoins = filteredCoins => this.setState({ filteredCoins });
 
   render() {
     return (
