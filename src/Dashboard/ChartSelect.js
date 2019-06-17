@@ -7,4 +7,5 @@ export default styled.select`
   color: #1163c9;
   border: 1px solid;
   float: right;
+  margin-bottom: 5px;
 `;
