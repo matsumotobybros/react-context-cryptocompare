@@ -8,8 +8,15 @@ const Logo = styled.div`
 
 const Bar = styled.div`
   display: grid;
-  grid-template-columns: 180px auto 100px 100px;
+  grid-template-columns: 180px auto 160px 100px 100px;
   margin-bottom: 40px;
+`;
+
+const ThemeButtonElem = styled.div`
+  cursor: pointer;
+  &:hover {
+    color: blue;
+  }
 `;
 
 const ControlButtonElem = styled.div`
@@ -41,6 +48,18 @@ function ControlButton({ name, active }) {
         >
           {toProperCase(name)}
         </ControlButtonElem>
+      )}
+    </AppContext.Consumer>
+  );
+}
+
+function ThemeButton({ btnName }) {
+  return (
+    <AppContext.Consumer>
+      {({ changeTheme }) => (
+        <ThemeButtonElem onClick={() => changeTheme()}>
+          {btnName}
+        </ThemeButtonElem>
       )}
     </AppContext.Consumer>
   );

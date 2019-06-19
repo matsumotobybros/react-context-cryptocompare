@@ -16,6 +16,7 @@ export class AppProvider extends React.Component {
       page: 'dashboard',
       favorites: ['BTC', 'ETH', 'XMR', 'DOGE'],
       timeInterval: 'months',
+      theme: 'dark',
       ...this.saveSettings(),
       setPage: this.setPage,
       addCoin: this.addCoin,
@@ -24,7 +25,8 @@ export class AppProvider extends React.Component {
       confirmFavorites: this.confirmFavorites,
       setCurrentFavorite: this.setCurrentFavorite,
       setFilterCoins: this.setFilterCoins,
-      changeChartSelect: this.changeChartSelect
+      changeChartSelect: this.changeChartSelect,
+      changeTheme: this.changeTheme
     };
   }
 
@@ -57,7 +59,9 @@ export class AppProvider extends React.Component {
         name: this.state.currentFavorite,
         data: results.map((ticker, index) => [
           moment()
-            .subtract({ [this.state.timeInterval]: TIME_UNITS - index })
+            .subtract({
+              [this.state.timeInterval]: TIME_UNITS - index
+            })
             .valueOf(),
           ticker.USD
         ])
@@ -167,6 +171,11 @@ export class AppProvider extends React.Component {
       { timeInterval: value, historical: null },
       this.fetchHistorical
     );
+  };
+
+  changeTheme = () => {
+    const theme = this.state.theme === 'dark' ? 'light' : 'dark';
+    this.setState({ theme });
   };
 
   render() {
